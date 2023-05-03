@@ -8,7 +8,7 @@ ClassNode::ClassNode() {
 }
 
 ClassNode::ClassNode(std::string courseName) { //Might be able to simplify contstructors by having "Unnamed" as default argument for courseName
-	courseName = courseName;
+	this->courseName = courseName;
 	semester = "Unknown";
 	year = 9999;
 }

@@ -4,7 +4,7 @@ FLAGS = -Wall -Wextra -g
 all: pr_check
 
 pr_check: pr_check.cpp ClassNode.o
-	g++ $(Flags) pr_check.cpp ClassNode.o -o pr_check
+	g++ $(FLAGS) pr_check.cpp ClassNode.o -o pr_check
 
 main: main.o ClassNode.o  
 	g++ -Wall -Wextra -O3 main.o ClassNode.o -o main -g
