@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 	}
 	cout << "Using file: " << argv[1] << endl;	
 	
-	//unordered_map<string, ClassNode*) testMap = createGraph(argv[1]);
+	unordered_map<string, ClassNode*) testMap = createGraph(argv[1]);
 
 	/*for (string courseName : testMap) {
 		cout << testMap[courseName].toString() << endl;
