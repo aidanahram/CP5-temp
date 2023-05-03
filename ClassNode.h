@@ -8,6 +8,7 @@
 class ClassNode{
 	public:
 		ClassNode();
+		ClassNode(std::string courseName);
 		//~ClassNode(); Empty destructor causing compiler issues
 		ClassNode(std::string courseName, std::string semester, int year);
 		
