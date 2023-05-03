@@ -43,9 +43,6 @@ int main(int argc, char *argv[]) {
 	
 	unordered_map<string, ClassNode*> testMap = createGraph(argv[1]);
 	
-	for (auto course : testMap) {
-		course.first << " " << course.second << endl;
-	}
 }
 
 
