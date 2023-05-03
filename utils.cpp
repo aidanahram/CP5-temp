@@ -17,4 +17,5 @@ vector<string> splitString(string inputString, char delimeter){
 					startIndex = endIndex + 1;
 			}
 	}
+	return result;
 }
