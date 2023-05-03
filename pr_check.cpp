@@ -28,7 +28,7 @@ unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from fi
 			addToMap(courses, courseMap);
 			
 			if (courses.size() == 2) { //If only 1 prerequisite, add it to the first course in the line
-				courseMap.at(courses.at(0))->preReqs.push_back(courseMap.at(courses.at(1));
+				courseMap.at(courses.at(0))->preReqs.push_back(courseMap.at(courses.at(1)));
 			}
 			else { //2 or more prerequisites
 			}
