@@ -12,16 +12,19 @@ bool addToMap(string courseName, unordered_map<string, ClassNode*> currentMap) {
 		currentMap[courseName] = newCourse;
 		return true;
 	}
-	else {return false;};
+	else {return true;};
 }
 
-unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from file to map course names to ints and assign each class its prerequisite classes
+unordered_map<string, ClassNode*> createGraph(string inputFile, vector<string> allCourses) { //Read from file to map course names to ints and assign each class its prerequisite classes
 	string testString;
 	unordered_map<string, ClassNode*> courseMap; //Consider mapping to ClassNode pointers instead
 	ifstream preReqs(inputFile);
 	while (preReqs.good()) { //This loop should call helper func to fill map. For the first course on each line, it should fill its prerequisite vector with the next courses on the line
+		cout << "YES" << endl;
 		getline(preReqs, testString);
 		addToMap(testString, courseMap);
+		allCourses.push_back(testString);
+		
 	}
 	
 	return courseMap;
@@ -31,12 +34,15 @@ unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from fi
 int main(int argc, char *argv[]) {
 	if (argv[1] == nullptr) {
 		cout << "Please provide an input file" << endl;
+		return 0;
 	}
 	cout << "Using file: " << argv[1] << endl;	
 	
-	unordered_map<string, ClassNode*) testMap = createGraph(argv[1]);
+	vector<string> allCourses;
+	
+	unordered_map<string, ClassNode*> testMap = createGraph(argv[1], allCourses);
 
-	/*for (string courseName : testMap) {
-		cout << testMap[courseName].toString() << endl;
-	}*/
+	for (int i = 0; i < allCourses.size(); i++) {
+		cout << allCourses.at(i) << endl;
+	}
 }
