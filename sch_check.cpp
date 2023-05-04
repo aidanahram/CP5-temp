@@ -1,13 +1,23 @@
 #include <string>
 #include <iostream>
+#include "Scheduler.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-	if (argv[1] == nullptr || argv[2] == nullptr) {
+	if (argc != 3) {
 		cout << "Please provide an 2 input files" << endl;
 		cout << "./sch_check <prerequisites> <schedule>" << endl;
 		return 0;
 	}
-	cout << "Using file: " << argv[1] << endl;	
+	cout << "Prerequisite file: " << argv[1] << endl;	
+	cout << "Schedule file: " << argv[2] << endl;
+
+	Scheduler myScheduler = Scheduler();
+	try{
+		myScheduler.readfile(argv[2]);
+	} catch (char const *error){
+		cout << error << endl;
+	}
+	myScheduler.printCourses();
 }
