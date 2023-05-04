@@ -14,6 +14,9 @@ void Scheduler::readfile(std::string inputFile){
 	if (fileReader.is_open()) {
 		while (fileReader) {
 			getline(fileReader, currentLine); 
+			if(currentLine.empty()){
+				break;
+			}
 			if(courses.find(currentLine) == courses.end()){
 				courses.insert(currentLine);
 			} else {

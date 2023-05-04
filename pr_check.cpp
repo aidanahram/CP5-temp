@@ -24,6 +24,9 @@ unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from fi
 	if (preReqs.is_open()) {
 		while (preReqs) {
 			getline(preReqs, currentLine); 
+			if(currentLine.empty()){
+				break;
+			}
 			vector<string> courses = splitString(currentLine, ' ');
 			addToMap(courses, courseMap);
 			
@@ -40,12 +43,12 @@ unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from fi
 		
 
 int main(int argc, char *argv[]) {
-	(void)argc;
-	if (argv[1] == nullptr) {
+	if (argc != 2) {
 		cout << "Please provide an input file" << endl;
+		cout << "./pr_check <prerequisites>" << endl;
 		return 0;
 	}
-	cout << "Using file: " << argv[1] << endl;	
+	cout << "Prerequisite file: " << argv[1] << endl;	
 	
 	unordered_map<string, ClassNode*> testMap = createGraph(argv[1]);
 	

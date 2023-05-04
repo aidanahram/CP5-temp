@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 	if (argc != 3) {
-		cout << "Please provide an 2 input files" << endl;
+		cout << "Please provide 2 input files" << endl;
 		cout << "./sch_check <prerequisites> <schedule>" << endl;
 		return 0;
 	}
