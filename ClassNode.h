@@ -14,8 +14,10 @@ class ClassNode{
 		
 		std::string toString();
 		void printPreReqs();
+		int findNumber();
 		
 		std::string courseName;
+		int courseNumber;
 		std::string semester;
 		int year;
 		

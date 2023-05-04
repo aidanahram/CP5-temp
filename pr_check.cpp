@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void addToMap(vector<string> courseLine, unordered_map<string, ClassNode*> &currentMap) { //Takes a string of course names; if not in map, adds each to map
+void addToMap(vector<string> courseLine, unordered_map<string, ClassNode*> &currentMap) { //Takes a string vector of course names; if not in map, adds each to map
 	for (string course : courseLine) {
 		if (currentMap.find(course) == currentMap.end()) {
 			ClassNode *newCourse = new ClassNode(course);
@@ -23,7 +23,7 @@ unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from fi
 	ifstream preReqs(inputFile);
 	if (preReqs.is_open()) {
 		while (preReqs) {
-			getline(preReqs, currentLine); 
+			getline(preReqs, currentLine); //Read 1 line of file
 			if(currentLine.empty()){
 				break;
 			}
@@ -49,9 +49,6 @@ int main(int argc, char *argv[]) {
 		return 0;
 	}
 	cout << "Prerequisite file: " << argv[1] << endl;	
-	
+
 	unordered_map<string, ClassNode*> testMap = createGraph(argv[1]);
-	
 }
-
-
