@@ -16,7 +16,7 @@ void addToMap(vector<string> courseLine, unordered_map<string, ClassNode*> &curr
 	}
 }
 
-unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from file to map course names to ints and assign each class its prerequisite classes
+unordered_map<string, ClassNode*> createGraph(string inputFile, vector<string> &courseNames) { //Read from file to map course names to ints and assign each class its prerequisite classes
 	string currentLine;
 	unordered_map<string, ClassNode*> courseMap;
 	
@@ -29,11 +29,25 @@ unordered_map<string, ClassNode*> createGraph(string inputFile) { //Read from fi
 			}
 			vector<string> courses = splitString(currentLine, ' ');
 			addToMap(courses, courseMap);
-			
-			if (courses.size() == 2) { //If only 1 prerequisite, add it to the first course in the line
-				courseMap.at(courses.at(0))->preReqs.push_back(courseMap.at(courses.at(1)));
+			for (unsigned int i = 0; i < courses.size(); i++) {
+				for (unsigned int j = 0; j < courseNames.size(); j++) {
+					cout << "Ran inner loop" << endl;
+					if (courses.at(i) == courseNames.at(i)) {
+						break;
+					}
+					courseNames.push_back(courses.at(i)); //Needs debugging
+				}
 			}
-			else { //2 or more prerequisites
+
+			if (courses.size() == 2) { //Only 1 prereq
+				courseMap.at(courses.at(0))->preReqs.push_back(courseMap.at(courses.at(1))); //Push it into the first course's list of prereqs
+			}
+			else { //2 or more (optional) prerequisites
+				ClassNode *dummyNode = new ClassNode();
+				courseMap.at(courses.at(0))->preReqs.push_back(dummyNode); //Insert dummy node for holding multiple optional paths
+				for (unsigned int i = 0; i < courses.size(); i++) {
+					dummyNode->preReqs.push_back(courseMap.at(courses.at(i)));
+				}
 			}
 		}	
 	}
@@ -50,5 +64,10 @@ int main(int argc, char *argv[]) {
 	}
 	cout << "Prerequisite file: " << argv[1] << endl;	
 
-	unordered_map<string, ClassNode*> testMap = createGraph(argv[1]);
+	vector<string> courseNames; //Used for keeping track of all courses in the map
+	unordered_map<string, ClassNode*> testMap = createGraph(argv[1], courseNames);
+
+	for (unsigned int i = 0; i < courseNames.size(); i++) {
+		cout << courseNames.at(i) << endl;
+	}
 }
